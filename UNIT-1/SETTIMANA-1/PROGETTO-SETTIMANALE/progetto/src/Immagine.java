@@ -1,4 +1,4 @@
-public abstract class Immagine extends ElementoMultimediale {
+public class Immagine extends ElementoMultimediale {
     private int luminosita;
 
     public Immagine(String titolo, int luminosita) {
@@ -17,11 +17,7 @@ public abstract class Immagine extends ElementoMultimediale {
     }
 
     public void show() {
-        System.out.print(titolo + ": ");
-        for (int i = 0; i < luminosita; i++) {
-            System.out.print("*");
-        }
-        System.out.println();
+        System.out.println(titolo + " " + "*".repeat(luminosita));
     }
 
     @Override

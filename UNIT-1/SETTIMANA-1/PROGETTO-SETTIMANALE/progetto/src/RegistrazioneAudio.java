@@ -1,4 +1,4 @@
-public abstract class RegistrazioneAudio extends ElementoMultimediale implements Riproducibile {
+public class RegistrazioneAudio extends ElementoMultimediale implements Riproducibile {
     private int durata;
     private int volume;
 
@@ -19,15 +19,18 @@ public abstract class RegistrazioneAudio extends ElementoMultimediale implements
         }
     }
 
-    @Override
     public void abbassaVolume() {
         if (volume > 0) {
             volume--;
         }
     }
 
-    @Override
     public void alzaVolume() {
         volume++;
+    }
+
+    @Override
+    public void esegui() {
+        play();
     }
 }

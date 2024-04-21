@@ -1,4 +1,4 @@
-public abstract class Video extends ElementoMultimediale implements Riproducibile {
+public class Video extends ElementoMultimediale implements Riproducibile {
     private int durata;
     private int volume;
     private int luminosita;
@@ -23,14 +23,12 @@ public abstract class Video extends ElementoMultimediale implements Riproducibil
     @Override
     public void play() {
         for (int i = 0; i < durata; i++) {
-            System.out.print(titolo + ": ");
-            for (int j = 0; j < volume; j++) {
-                System.out.print("!");
-            }
-            for (int k = 0; k < luminosita; k++) {
-                System.out.print("*");
-            }
-
+            System.out.println(titolo + " " + "!".repeat(volume) + "*".repeat(luminosita));
         }
+    }
+
+    @Override
+    public void esegui() {
+        play();
     }
 }
