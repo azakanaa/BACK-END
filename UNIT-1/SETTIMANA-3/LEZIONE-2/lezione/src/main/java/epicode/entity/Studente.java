@@ -14,18 +14,21 @@ public class Studente {
     private String nome;
     @Column(nullable = false, length = 30)
     private String cognome;
-    private String indirizzo;
     @Column(name = "data_nascita")
     private LocalDate dataNascita;
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_studente")
     private TipoStudente tipoStudente;
+//    @Embedded
+//    private Indirizzo indirizzo;
+    @OneToOne
+    @JoinColumn(name = "indirizzo_db")
+    private Indirizzo indirizzo;
 
-    public Studente(int matricola, String nome, String cognome, String indirizzo, LocalDate dataNascita) {
+    public Studente(int matricola, String nome, String cognome, LocalDate dataNascita) {
         this.matricola = matricola;
         this.nome = nome;
         this.cognome = cognome;
-        this.indirizzo = indirizzo;
         this.dataNascita = dataNascita;
     }
 
@@ -57,20 +60,20 @@ public class Studente {
         this.cognome = cognome;
     }
 
-    public String getIndirizzo() {
-        return indirizzo;
-    }
-
-    public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
-    }
-
     public LocalDate getDataNascita() {
         return dataNascita;
     }
 
     public void setDataNascita(LocalDate dataNascita) {
         this.dataNascita = dataNascita;
+    }
+
+    public Indirizzo getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(Indirizzo indirizzo) {
+        this.indirizzo = indirizzo;
     }
 
     @Override
@@ -82,5 +85,9 @@ public class Studente {
                 ", indirizzo='" + indirizzo + '\'' +
                 ", dataNascita=" + dataNascita +
                 '}';
+    }
+
+    public void setTipoStudente(TipoStudente tipoStudente) {
+
     }
 }
