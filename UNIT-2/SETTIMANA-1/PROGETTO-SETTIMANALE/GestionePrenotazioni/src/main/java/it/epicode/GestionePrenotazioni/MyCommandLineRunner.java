@@ -49,18 +49,12 @@ public class MyCommandLineRunner implements CommandLineRunner {
 //        Utente u = ctx.getBean("Elena", Utente.class);
 //        utenteService.inserisciUtente(u);
 
-//        ----------------------------------------------
-
-
         // INSERISCO PRENOTAZIONE NEL DB
 //        Prenotazione prenotazione = new Prenotazione();
 //        prenotazione.setPostazione(postazioneService.getPostazioneById(1));
 //        prenotazione.setUtente(utenteService.getUtenteById(1));
 //        prenotazione.setData(LocalDate.of(2024,05,17));
 //        prenotazioneService.inserisciPrenotazione(prenotazione);
-
-
-//        -------------------------------------------------
 
 
         // PROVA PER CONFERMARE CHE L'UTENTE HA GIà LA PRENOTAZIONE PER QUESTO GIORNO
@@ -72,6 +66,6 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
 
         // RICERCA PER TROVARE UNA POSTAZIONE TRAMITE TIPO E CITTà
-        postazioneService.ricercaPostazioniPerTipoECitta(Tipo.PRIVATO, "Cava de' Tirreni").forEach(System.out::println);
+        postazioneService.ricercaPostazioniPerTipoECitta(Tipo.OPENSPACE, "Cava de' Tirreni").forEach(System.out::println);
     }
 }
