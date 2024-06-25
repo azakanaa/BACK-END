@@ -23,7 +23,6 @@ public class Utente implements UserDetails {
     private String password;
     private String nome;
     private String cognome;
-    private String avatar;
 
     @Enumerated(EnumType.STRING)
     private Ruolo ruolo;

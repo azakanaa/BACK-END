@@ -11,9 +11,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
@@ -31,19 +33,21 @@ public class Config implements WebMvcConfigurer {
 
         httpSecurity.authorizeHttpRequests(http -> http.requestMatchers("/auth/login", "/auth/signup").permitAll());
         httpSecurity.authorizeHttpRequests(http -> http.requestMatchers("/home").hasAnyAuthority("ADMIN", "USER"));
-        httpSecurity.authorizeHttpRequests(http -> http.requestMatchers("/preferiti").hasAnyAuthority("ADMIN", "USER"));
-        httpSecurity.authorizeHttpRequests(http -> http.requestMatchers("/personaggi").hasAnyAuthority("ADMIN", "USER"));
-
+        httpSecurity.authorizeHttpRequests(http -> http.requestMatchers("/favorites").hasAnyAuthority("ADMIN", "USER"));
+        httpSecurity.authorizeHttpRequests(http -> http.requestMatchers("/characters").hasAnyAuthority("ADMIN", "USER"));
+        httpSecurity.authorizeHttpRequests(http -> http.requestMatchers("/").hasAnyAuthority("ADMIN", "USER"));
+        httpSecurity.authorizeHttpRequests(http -> http.anyRequest().authenticated());
+        httpSecurity.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }
 
     @Override
-    public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
+    public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*")
-               .allowedMethods("*")
-                .allowedHeaders("*");
+                .allowedOrigins("http://localhost:4200")
+               .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("Authorization", "Content-Type");
     }
 
     @Bean

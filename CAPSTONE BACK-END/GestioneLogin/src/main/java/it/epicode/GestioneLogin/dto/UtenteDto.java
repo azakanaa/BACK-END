@@ -20,19 +20,16 @@ public class UtenteDto {
     @NotNull
     private String cognome;
 
-    private String avatar;
-
     @NotNull
     private String password;
 
     private Ruolo ruolo;
 
-    public UtenteDto(String username, String email, String nome, String cognome, String avatar, String password, Ruolo ruolo) {
+    public UtenteDto(String username, String email, String nome, String cognome, String password, Ruolo ruolo) {
         this.username = username;
         this.email = email;
         this.nome = nome;
         this.cognome = cognome;
-        this.avatar = avatar;
         this.password = password;
         this.ruolo = Ruolo.USER;
     }
